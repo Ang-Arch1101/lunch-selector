@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>午休吃什麼</title>
+<script>
+(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;m.head.append(a);d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+({key: "AIzaSyCvRgoPstZl8bwmHE_mRqxrDo_8X0xSpNw", language: "zh-TW"});
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f4f0;color:#2c2c2a;min-height:100vh}
+.page{display:none;max-width:480px;margin:0 auto;min-height:100vh;flex-direction:column;padding-bottom:2rem}
+.page.active{display:flex}
+.nav{display:flex;align-items:center;gap:10px;padding:1.5rem 1.25rem 1rem}
+.nav-info{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav-label{font-size:12px;color:#b4b2a9}
+.nav-title{font-size:18px;font-weight:500;color:#2c2c2a}
+.icon-btn{width:34px;height:34px;border-radius:50%;border:1px solid #d3d1c7;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background .15s}
+.icon-btn:hover{background:#f1efe8}
+.icon-btn svg{width:18px;height:18px;stroke:#888780;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.card{background:#fff;border-radius:16px;padding:1rem 1.25rem;margin:0 1rem 10px;border:1px solid #e5e4de}
+.sec-label{font-size:11px;color:#b4b2a9;text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px}
+.main-btn{display:block;margin:4px 1rem 0;padding:15px;border-radius:14px;border:none;background:#2c2c2a;color:#fff;font-size:16px;font-weight:500;cursor:pointer;width:calc(100% - 2rem);text-align:center;transition:opacity .15s}
+.main-btn:hover{opacity:.85}
+.type-top-row{display:flex;align-items:flex-end;justify-content:space-between;padding:2rem 1.25rem 1.5rem}
+.type-top-row h1{font-size:24px;font-weight:500;color:#2c2c2a}
+.type-top-row p{font-size:13px;color:#888780;margin-top:4px}
+.carousel-wrap{overflow:hidden;width:100%;padding:6px 0 14px;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 12%,#000 88%,transparent 100%)}
+.carousel-track{display:flex;will-change:transform;align-items:flex-start}
+.type-card{flex-shrink:0;border:1px solid #e5e4de;border-radius:20px;background:#fff;padding:1.4rem 1.2rem 1.2rem;display:flex;flex-direction:column;user-select:none;transition:border-color .2s,box-shadow .2s}
+.type-card.center{border-color:#aaa9a0;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.card-emoji{font-size:32px;margin-bottom:.7rem;display:block;line-height:1}
+.card-name{font-size:17px;font-weight:500;color:#2c2c2a;margin-bottom:3px}
+.card-desc{font-size:13px;color:#888780;line-height:1.55;flex:1}
+.card-kw-row{display:flex;gap:7px;margin-top:1rem;width:100%;align-items:center}
+.card-kw-inp{width:120px;flex:0 0 120px;padding:7px 10px;border:1px solid #e5e4de;border-radius:10px;font-size:13px;background:#fafaf8;color:#2c2c2a;outline:none}
+.card-kw-inp:focus{border-color:#888780}
+.dice-btn{width:34px;height:34px;border-radius:10px;border:none;background:#2c2c2a;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:opacity .15s;overflow:visible}
+.dice-btn:hover{opacity:.8}
+.dice-btn svg{width:20px;height:20px;flex-shrink:0}
+@keyframes dice-shake{0%{transform:rotate(0deg)}15%{transform:rotate(-18deg)}30%{transform:rotate(16deg)}45%{transform:rotate(-14deg)}60%{transform:rotate(12deg)}75%{transform:rotate(-8deg)}88%{transform:rotate(5deg)}100%{transform:rotate(0deg)}}
+.dice-btn.rolling svg{animation:dice-shake .5s cubic-bezier(.36,.07,.19,.97) forwards}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;width:100%}
+.card-tag{display:inline-flex;align-items:center;gap:4px;background:#f5f4f0;border:1px solid #e5e4de;border-radius:20px;padding:3px 9px;font-size:12px;color:#5f5e5a}
+.card-tag .rm{cursor:pointer;color:#b4b2a9;font-size:13px;line-height:1}
+.card-tag .rm:hover{color:#2c2c2a}
+.card-go-btn{display:block;width:100%;margin-top:1.1rem;padding:11px;border-radius:12px;border:none;background:#2c2c2a;color:#fff;font-size:14px;font-weight:500;cursor:pointer;text-align:center;transition:opacity .15s;flex-shrink:0}
+.card-go-btn:hover{opacity:.85}
+.veg-btn{transition:background .2s,border-color .2s}
+.veg-btn #veg-icon{filter:grayscale(1) opacity(.45);transition:filter .2s}
+.veg-btn.on{background:#e8f5e9;border-color:#81c784}
+.veg-btn.on #veg-icon{filter:none}
+body.veg-mode{background:#f0f7f0}
+body.veg-mode .page{background:transparent}
+.scroll-dots{display:flex;justify-content:center;gap:7px;margin:.2rem 0 .5rem}
+.scroll-dot{width:5px;height:5px;border-radius:50%;background:#d3d1c7;cursor:pointer;transition:all .22s}
+.scroll-dot.cur{background:#2c2c2a;width:16px;border-radius:3px}
+.type-bottom-note{text-align:center;font-size:12px;color:#b4b2a9;padding:0 1.25rem;margin-top:auto;padding-top:.5rem}
+.type-bottom-note span{color:#888780}
+.type-tabs{display:flex;gap:6px;padding:0 1.25rem;margin-bottom:1rem;overflow-x:auto;scrollbar-width:none}
+.type-tabs::-webkit-scrollbar{display:none}
+.tab{padding:6px 14px;border-radius:20px;border:1px solid #d3d1c7;background:#fff;font-size:13px;color:#888780;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s}
+.tab:hover{background:#f1efe8}
+.tab.on{background:#2c2c2a;color:#fff;border-color:#2c2c2a}
+.walk-display{display:flex;align-items:baseline;gap:5px;margin-bottom:12px}
+.walk-num{font-size:26px;font-weight:500;color:#2c2c2a}
+.walk-unit{font-size:13px;color:#888780}
+input[type=range]{width:100%;accent-color:#2c2c2a;cursor:pointer}
+.walk-ticks{display:flex;justify-content:space-between;padding:0 1px;margin-top:6px}
+.walk-ticks span{font-size:11px;color:#b4b2a9}
+.pill-row{display:flex;gap:7px}
+.pill{flex:1;padding:9px 4px;border-radius:10px;border:1px solid #e5e4de;background:#fafaf8;font-size:13px;color:#888780;cursor:pointer;text-align:center;line-height:1.5;transition:all .15s}
+.pill span{display:block;font-size:11px;color:#b4b2a9;margin-top:2px}
+.pill.on{border-color:#2c2c2a;background:#2c2c2a;color:#fff}
+.pill.on span{color:rgba(255,255,255,.5)}
+.sort-row{display:flex;gap:7px}
+.sort-pill{flex:1;padding:10px;border-radius:10px;border:1px solid #e5e4de;background:#fafaf8;font-size:13px;font-weight:500;color:#888780;cursor:pointer;text-align:center;transition:all .15s}
+.sort-pill.on{border-color:#2c2c2a;background:#2c2c2a;color:#fff}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:2px 0}
+.toggle-label{display:flex;flex-direction:column;gap:2px}
+.toggle-label span{font-size:14px;color:#2c2c2a}
+.toggle-label small{font-size:12px;color:#b4b2a9}
+.toggle{position:relative;width:44px;height:26px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0;position:absolute}
+.toggle-slider{position:absolute;inset:0;background:#e5e4de;border-radius:13px;cursor:pointer;transition:background .2s}
+.toggle-slider::before{content:'';position:absolute;width:20px;height:20px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.toggle input:checked + .toggle-slider{background:#2c2c2a}
+.toggle input:checked + .toggle-slider::before{transform:translateX(18px)}
+.saved-hint{text-align:center;font-size:12px;color:#b4b2a9;margin-top:8px;min-height:18px;opacity:0;transition:opacity .3s}
+.saved-hint.show{opacity:1;color:#5f5e5a}
+.slot-type-badge{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1px solid #e5e4de;border-radius:20px;padding:2px 10px;font-size:12px;color:#5f5e5a;margin-bottom:3px}
+.machine-wrap{display:flex;align-items:flex-start;padding:0 1rem;margin-bottom:12px}
+.machine-body{flex:1;background:#fff;border:1px solid #e5e4de;border-radius:20px;padding:1.25rem 1.1rem 1.1rem}
+.reel-window{width:100%;height:130px;overflow:hidden;border-radius:12px;background:#f5f4f0;border:1px solid #e5e4de;position:relative;margin-bottom:1rem}
+.reel-window::before,.reel-window::after{content:'';position:absolute;left:0;right:0;height:32px;z-index:2;pointer-events:none}
+.reel-window::before{top:0;background:linear-gradient(to bottom,#f5f4f0,transparent)}
+.reel-window::after{bottom:0;background:linear-gradient(to top,#f5f4f0,transparent)}
+.center-line{position:absolute;top:50%;left:16px;right:16px;height:1px;background:#d3d1c7;transform:translateY(-50%);z-index:3;pointer-events:none}
+.reel-track{display:flex;flex-direction:column;will-change:transform}
+.reel-item{height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 16px;text-align:center;gap:5px}
+.reel-name{font-size:19px;font-weight:500;color:#2c2c2a;line-height:1.3}
+.reel-meta{display:flex;align-items:center;gap:10px;font-size:12px;color:#888780}
+.dots-row{display:flex;justify-content:center;gap:8px;margin-bottom:10px}
+.dot{width:8px;height:8px;border-radius:50%;transition:background .25s}
+.dot.on{background:#2c2c2a}.dot.off{background:#e5e4de}
+.slot-status{text-align:center;font-size:13px;color:#888780}
+.lever-col{display:flex;flex-direction:column;align-items:center;padding-left:14px;padding-top:16px;user-select:none}
+.lever-track{width:16px;height:190px;background:#e5e4de;border-radius:8px;border:1px solid #d3d1c7;position:relative}
+.lever-ball{width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid #d3d1c7;position:absolute;left:50%;transform:translateX(-50%);top:4px;cursor:grab;display:flex;align-items:center;justify-content:center;z-index:2}
+.lever-ball:active{cursor:grabbing}
+.lever-ball svg{width:15px;height:15px;stroke:#888780;fill:none;stroke-width:1.5}
+.lever-ball.disabled{opacity:.35;cursor:not-allowed}
+.lever-label{font-size:11px;color:#b4b2a9;margin-top:8px}
+.search-status{margin:0 1rem 10px;padding:12px 16px;border-radius:12px;background:#fff;border:1px solid #e5e4de;font-size:13px;color:#888780;text-align:center;display:none}
+.search-status.show{display:block}
+.error-card{margin:0 1rem 12px;background:#fff;border:1px solid #e5e4de;border-radius:20px;padding:2rem 1.25rem 1.25rem;text-align:center;display:none;flex-direction:column;align-items:center;gap:6px}
+.error-card.show{display:flex}
+.error-icon{font-size:36px;margin-bottom:4px}
+.error-title{font-size:16px;font-weight:500;color:#2c2c2a}
+.error-desc{font-size:13px;color:#888780;line-height:1.5;margin-bottom:8px}
+.error-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+.exhausted-card{margin:0 1rem 12px;background:#fff;border:1px solid #e5e4de;border-radius:14px;padding:1rem 1.25rem;text-align:center;font-size:14px;color:#888780;display:none}
+.exhausted-card.show{display:block}
+.countdown{font-size:20px;font-weight:500;color:#2c2c2a;display:block;margin-top:5px}
+.result-card{margin:0 1rem;background:#fff;border:1px solid #e5e4de;border-radius:20px;padding:1.25rem;display:none}
+.result-card.show{display:block}
+.result-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:8px}
+.result-name{font-size:20px;font-weight:500;color:#2c2c2a;line-height:1.3}
+.result-price{font-size:13px;color:#888780;flex-shrink:0;padding-top:3px}
+.result-meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.meta-pill{display:flex;align-items:center;gap:5px;background:#f5f4f0;border-radius:20px;padding:5px 12px;font-size:13px;color:#5f5e5a}
+.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.action-btn{padding:11px;border-radius:12px;border:1px solid #e5e4de;background:#f5f4f0;font-size:14px;font-weight:500;color:#2c2c2a;cursor:pointer;text-align:center;transition:background .15s}
+.action-btn:hover{background:#eceae4}
+.action-btn.primary{background:#2c2c2a;color:#fff;border-color:#2c2c2a}
+.action-btn.primary:hover{opacity:.85}
+</style>
+</head>
+<body>
+
+<!-- 頁一 -->
+<div class="page active" id="pg-type">
+  <div class="type-top-row">
+    <div><h1>午休吃什麼？</h1><p>滑動選類型，點按鈕開始</p></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <div class="icon-btn veg-btn" id="veg-btn" onclick="toggleVeg()" title="素食模式">
+        <span style="font-size:15px;line-height:1;color:#888780;transition:color .2s" id="veg-icon">🌿</span>
+      </div>
+      <div class="icon-btn" onclick="goPage('pg-pref')" title="偏好設定">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="carousel-wrap" id="carousel-wrap">
+    <div class="carousel-track" id="carousel-track"></div>
+  </div>
+  <div class="scroll-dots" id="scroll-dots">
+    <div class="scroll-dot cur" data-i="0"></div>
+    <div class="scroll-dot" data-i="1"></div>
+    <div class="scroll-dot" data-i="2"></div>
+  </div>
+  <div class="type-bottom-note">左右滑動 · <span>右上角齒輪</span>可調設定</div>
+</div>
+
+<!-- 頁二 -->
+<div class="page" id="pg-pref">
+  <div class="nav">
+    <div class="icon-btn" onclick="goPage('pg-type')"><svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5"/></svg></div>
+    <div class="nav-info"><div class="nav-label">偏好設定</div><div class="nav-title" id="pref-nav-title">正餐</div></div>
+  </div>
+  <div class="type-tabs">
+    <div class="tab on" data-type="meal">🍱 正餐</div>
+    <div class="tab" data-type="cafe">☕ 咖啡下午茶</div>
+    <div class="tab" data-type="snack">🧆 點心小吃</div>
+  </div>
+  <div class="card">
+    <div class="sec-label">步行時間上限</div>
+    <div class="walk-display"><div class="walk-num" id="walk-num">20</div><div class="walk-unit">分鐘以內</div></div>
+    <input type="range" id="walk-slider" min="5" max="30" step="5" value="20">
+    <div class="walk-ticks"><span>5</span><span>10</span><span>15</span><span>20</span><span>25</span><span>30</span></div>
+  </div>
+  <div class="card"><div class="sec-label">價格區間</div><div class="pill-row" id="price-row"></div></div>
+  <div class="card">
+    <div class="sec-label">排序方式</div>
+    <div class="sort-row">
+      <div class="sort-pill on" data-sort="rating">⭐ 評分優先</div>
+      <div class="sort-pill" data-sort="distance">📍 距離優先</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="sec-label">拉霸限制</div>
+    <div class="toggle-row">
+      <div class="toggle-label"><span>無限拉霸</span><small>開啟後本小時不限次數</small></div>
+      <label class="toggle"><input type="checkbox" id="unlimited-toggle"><span class="toggle-slider"></span></label>
+    </div>
+  </div>
+  <button class="main-btn" id="save-btn">儲存設定</button>
+  <div class="saved-hint" id="saved-hint">✓ 設定已儲存</div>
+</div>
+
+<!-- 頁三 -->
+<div class="page" id="pg-slot">
+  <div class="nav">
+    <div class="icon-btn" onclick="goPage('pg-type')"><svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5"/></svg></div>
+    <div class="nav-info"><div class="slot-type-badge" id="slot-type-badge">🍱 正餐</div></div>
+    <div class="icon-btn" onclick="goPage('pg-pref')" title="偏好設定">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#888780" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </div>
+  </div>
+  <div class="search-status" id="search-status"></div>
+  <div class="error-card" id="error-card">
+    <div class="error-icon" id="error-icon">😅</div>
+    <div class="error-title" id="error-title">附近沒有符合條件的店</div>
+    <div class="error-desc" id="error-desc">試著放寬步行時間或價格區間</div>
+    <div class="error-actions">
+      <div class="action-btn" onclick="goPage('pg-pref')">調整設定</div>
+      <div class="action-btn primary" onclick="retrySearch()">重新搜尋</div>
+    </div>
+  </div>
+  <div class="machine-wrap" id="machine-wrap">
+    <div class="machine-body">
+      <div class="reel-window">
+        <div class="center-line"></div>
+        <div class="reel-track" id="reel-track"></div>
+      </div>
+      <div class="dots-row" id="dots-row"></div>
+      <div class="slot-status" id="slot-status">拉下右側拉桿開始</div>
+    </div>
+    <div class="lever-col">
+      <div class="lever-track">
+        <div class="lever-ball" id="lever-ball">
+          <svg viewBox="0 0 16 16"><line x1="8" y1="3" x2="8" y2="11"/><polyline points="5,8 8,12 11,8"/></svg>
+        </div>
+      </div>
+      <div class="lever-label">拉桿</div>
+    </div>
+  </div>
+  <div class="exhausted-card" id="exhausted-card">
+    本小時機會已用完
+    <span class="countdown" id="countdown">60:00</span>後重置
+  </div>
+  <div class="result-card" id="result-card">
+    <div class="result-header">
+      <div class="result-name" id="res-name">—</div>
+      <div class="result-price" id="res-price"></div>
+    </div>
+    <div class="result-meta-row" id="res-meta"></div>
+    <div class="result-actions">
+      <div class="action-btn" id="respin-btn">再拉一次</div>
+      <div class="action-btn primary" id="confirm-btn">就決定是你了</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const TYPE_KEYS = ['meal','cafe','snack'];
+const TYPE_INFO = {
+  meal:  {label:'🍱 正餐',       name:'正餐',       emoji:'🍱',desc:'吃飽才有力氣工作，好好吃一頓',pool:['便當','滷肉飯','麵食','自助餐','定食','炒飯','湯麵','日式','台式','快速'],gmType:'restaurant'},
+  cafe:  {label:'☕ 咖啡下午茶',name:'咖啡下午茶',emoji:'☕',desc:'充個電，給自己一段喘息的時間',pool:['咖啡','拿鐵','甜點','蛋糕','輕食','麵包','下午茶','貝果','司康','抹茶'],gmType:'cafe'},
+  snack: {label:'🧆 點心小吃',  name:'點心小吃',  emoji:'🧆',desc:'隨手買一個，補個能量繼續拼',  pool:['雞排','鹹酥雞','飲料','珍奶','蚵仔煎','小籠包','燒賣','刈包','豆花','甜不辣'],gmType:'restaurant'},
+};
+const PRICES = [['$','100以下'],['$$','～200'],['$$$','～400'],['$$$$','400+']];
+const PRICE_SYM = ['','$','$$','$$$','$$$$'];
+const MAX_CH = 3;
+const ITEM_H = 130;
+const LV_MIN = 4, LV_MAX = 190-38-4;
+const PEEK = 28, GAP = 14;
+
+let curType='meal', slotPool=[], spinning=false, spinIv=null, pickedIdx=0, cdTimer=null, prefCurType='meal', spinQueue=[], fetchPromise=null, fetchGen=0;
+
+const dfPref = ()=>({kws:[],walk:20,prices:[1,2,3,4],sort:'rating',unlimited:false});
+let prefState = {meal:dfPref(),cafe:dfPref(),snack:dfPref()};
+
+function loadPrefs(){ TYPE_KEYS.forEach(t=>{ try{const s=JSON.parse(localStorage.getItem('pref_'+t)||'null');if(s)prefState[t]=s;}catch(e){} }); }
+function savePrefs(){ TYPE_KEYS.forEach(t=>{ try{localStorage.setItem('pref_'+t,JSON.stringify(prefState[t]));}catch(e){} }); }
+
+function exclKey(t){return `excl_${t}_${new Date().toDateString()}`;}
+function getExcl(t){try{return JSON.parse(localStorage.getItem(exclKey(t))||'[]');}catch(e){return[];}}
+function addExcl(t,n){try{const a=getExcl(t);if(!a.includes(n))a.push(n);localStorage.setItem(exclKey(t),JSON.stringify(a));}catch(e){}}
+function hourKey(t){const d=new Date();return `slot_${t}_${d.getFullYear()}${d.getMonth()}${d.getDate()}${d.getHours()}`;}
+function getUsed(t){try{return parseInt(localStorage.getItem(hourKey(t))||'0');}catch(e){return 0;}}
+function incUsed(t){try{localStorage.setItem(hourKey(t),String(getUsed(t)+1));}catch(e){}}
+function getChances(t){ if(prefState[t]&&prefState[t].unlimited)return 999; return Math.max(0,MAX_CH-getUsed(t)); }
+
+function goPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='pg-pref')initPrefPage();
+}
+
+/* ══ 頁一：輪播 ══ */
+(function initCarousel(){
+  const wrap=document.getElementById('carousel-wrap');
+  const track=document.getElementById('carousel-track');
+  const dots=document.querySelectorAll('.scroll-dot');
+  const N=3;
+  let cur=0, cardW=0;
+
+  function calcCW(){ return wrap.clientWidth-PEEK*2-GAP; }
+  function snapTo(idx,animate){
+    cur=((idx%N)+N)%N;
+    const absIdx=N+cur;
+    const tx=-(absIdx*(cardW+GAP))+PEEK;
+    track.style.transition=animate?'transform .36s cubic-bezier(.25,1,.5,1)':'none';
+    track.style.transform=`translateX(${tx}px)`;
+    document.querySelectorAll('.type-card').forEach(c=>c.classList.toggle('center',parseInt(c.dataset.li)===cur));
+    dots.forEach((d,i)=>d.classList.toggle('cur',i===cur));
+  }
+  function buildCards(){
+    cardW=calcCW();
+    track.innerHTML='';
+    track.style.transition='none';
+    track.style.width=(9*(cardW+GAP))+'px';
+    for(let r=0;r<3;r++){
+      TYPE_KEYS.forEach((type,i)=>{
+        const info=TYPE_INFO[type];
+        const card=document.createElement('div');
+        card.className='type-card';
+        card.style.cssText=`width:${cardW}px;margin-right:${GAP}px`;
+        card.dataset.type=type;card.dataset.round=r;card.dataset.li=i;
+        card.innerHTML=`
+          <span class="card-emoji">${info.emoji}</span>
+          <div class="card-name">${info.name}</div>
+          <div class="card-desc">${info.desc}</div>
+          <div class="card-kw-row">
+            <input class="card-kw-inp" placeholder="加關鍵字…">
+            <div class="dice-btn" title="隨機關鍵字">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="20" height="20" rx="4" fill="#2c2c2a"/>
+                <circle cx="6" cy="6" r="1.5" fill="white"/>
+                <circle cx="14" cy="6" r="1.5" fill="white"/>
+                <circle cx="10" cy="10" r="1.5" fill="white"/>
+                <circle cx="6" cy="14" r="1.5" fill="white"/>
+                <circle cx="14" cy="14" r="1.5" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-tags" id="ctags-${r}-${i}"></div>
+          <button class="card-go-btn">開始搜尋</button>`;
+        track.appendChild(card);
+        renderCardTags(r,i,type);
+        const inp=card.querySelector('.card-kw-inp');
+        inp.addEventListener('keydown',e=>{if(e.key!=='Enter')return;e.preventDefault();const w=inp.value.trim();if(w){addCardKw(type,w);inp.value='';}});
+        inp.addEventListener('pointerdown',e=>e.stopPropagation());
+        const dice=card.querySelector('.dice-btn');
+        dice.addEventListener('pointerdown',e=>e.stopPropagation());
+        dice.addEventListener('mouseenter',()=>{dice.classList.remove('rolling');void dice.offsetWidth;dice.classList.add('rolling');});
+        dice.addEventListener('animationend',()=>dice.classList.remove('rolling'));
+        dice.addEventListener('click',e=>{e.stopPropagation();const avail=info.pool.filter(k=>!prefState[type].kws.includes(k));if(!avail.length)return;addCardKw(type,avail[Math.floor(Math.random()*avail.length)]);});
+        const go=card.querySelector('.card-go-btn');
+        go.addEventListener('pointerdown',e=>e.stopPropagation());
+        go.addEventListener('click',e=>{e.stopPropagation();launchSlot(type);});
+      });
+    }
+    snapTo(cur,false);
+  }
+  function renderCardTags(r,i,type){
+    const el=document.getElementById(`ctags-${r}-${i}`);if(!el)return;
+    el.innerHTML='';
+    prefState[type].kws.forEach(k=>{
+      const tag=document.createElement('div');tag.className='card-tag';
+      tag.innerHTML=`${k}<span class="rm">×</span>`;
+      tag.querySelector('.rm').addEventListener('pointerdown',e=>e.stopPropagation());
+      tag.querySelector('.rm').addEventListener('click',e=>{e.stopPropagation();prefState[type].kws=prefState[type].kws.filter(x=>x!==k);savePrefs();refreshAllTags(type);});
+      el.appendChild(tag);
+    });
+  }
+  function refreshAllTags(type){const i=TYPE_KEYS.indexOf(type);for(let r=0;r<3;r++)renderCardTags(r,i,type);}
+  function addCardKw(type,w){if(!w)return;if(!prefState[type].kws.includes(w)){prefState[type].kws.push(w);savePrefs();}refreshAllTags(type);}
+  let isDrag=false,sx=0,lastTx=0,dx=0;
+  function dragStart(x){isDrag=true;sx=x;dx=0;const m=new DOMMatrix(getComputedStyle(track).transform);lastTx=m.m41;track.style.transition='none';}
+  function dragMove(x){if(!isDrag)return;dx=x-sx;track.style.transform=`translateX(${lastTx+dx}px)`;}
+  function dragEnd(){if(!isDrag)return;isDrag=false;if(dx<-(cardW*.22))snapTo(cur+1,true);else if(dx>(cardW*.22))snapTo(cur-1,true);else snapTo(cur,true);}
+  wrap.addEventListener('pointerdown',e=>{if(e.target.closest('.card-kw-inp,.dice-btn,.card-go-btn,.card-tag'))return;wrap.setPointerCapture(e.pointerId);dragStart(e.clientX);});
+  wrap.addEventListener('pointermove',e=>{if(isDrag)dragMove(e.clientX);});
+  wrap.addEventListener('pointerup',dragEnd);
+  wrap.addEventListener('pointercancel',dragEnd);
+  dots.forEach(d=>d.addEventListener('click',()=>snapTo(parseInt(d.dataset.i),true)));
+  let rzTimer;
+  window.addEventListener('resize',()=>{clearTimeout(rzTimer);rzTimer=setTimeout(buildCards,100);});
+  loadPrefs();buildCards();
+})();
+
+function launchSlot(type){ curType=type; document.getElementById('slot-type-badge').textContent=TYPE_INFO[type].label; initSlotPage(); goPage('pg-slot'); document.getElementById('lever-ball').classList.add('disabled'); fetchPromise=fetchAndInitSlot(true); }
+
+/* ══ 頁二：偏好設定 ══ */
+function initPrefPage(){switchPrefTab(curType);}
+function switchPrefTab(t){
+  prefCurType=t;
+  document.querySelectorAll('#pg-pref .tab').forEach(el=>el.classList.toggle('on',el.dataset.type===t));
+  document.getElementById('pref-nav-title').textContent=TYPE_INFO[t].name;
+  const s=prefState[t];
+  document.getElementById('walk-slider').value=s.walk;
+  document.getElementById('walk-num').textContent=s.walk;
+  renderPrefPrices(s.prices);
+  document.querySelectorAll('.sort-pill').forEach(el=>el.classList.toggle('on',el.dataset.sort===s.sort));
+  document.getElementById('unlimited-toggle').checked=!!s.unlimited;
+}
+function renderPrefPrices(prices){
+  const row=document.getElementById('price-row');row.innerHTML='';
+  PRICES.forEach(([sym,label],i)=>{
+    const lvl=i+1,pill=document.createElement('div');
+    pill.className='pill'+(prices.includes(lvl)?' on':'');
+    pill.innerHTML=`${sym}<span>${label}</span>`;
+    pill.addEventListener('click',()=>{
+      const p=prefState[prefCurType].prices;
+      if(p.includes(lvl)){if(p.length===1)return;prefState[prefCurType].prices=p.filter(x=>x!==lvl);}
+      else{prefState[prefCurType].prices=[...p,lvl].sort();}
+      renderPrefPrices(prefState[prefCurType].prices);
+    });
+    row.appendChild(pill);
+  });
+}
+document.querySelectorAll('#pg-pref .tab').forEach(el=>el.addEventListener('click',()=>switchPrefTab(el.dataset.type)));
+document.getElementById('walk-slider').addEventListener('input',e=>{const v=parseInt(e.target.value);prefState[prefCurType].walk=v;document.getElementById('walk-num').textContent=v;});
+document.querySelectorAll('.sort-pill').forEach(el=>el.addEventListener('click',()=>{prefState[prefCurType].sort=el.dataset.sort;document.querySelectorAll('.sort-pill').forEach(p=>p.classList.toggle('on',p.dataset.sort===el.dataset.sort));}));
+document.getElementById('unlimited-toggle').addEventListener('change',e=>{prefState[prefCurType].unlimited=e.target.checked;});
+document.getElementById('save-btn').addEventListener('click',()=>{savePrefs();const h=document.getElementById('saved-hint');h.classList.add('show');setTimeout(()=>h.classList.remove('show'),2200);});
+
+/* ══ Google Maps ══ */
+function setStatus(msg){const el=document.getElementById('search-status');if(msg){el.textContent=msg;el.classList.add('show');}else{el.classList.remove('show');}}
+function getLocation(){return new Promise((res,rej)=>{if(!navigator.geolocation){rej('browser');return;}navigator.geolocation.getCurrentPosition(p=>res({lat:p.coords.latitude,lng:p.coords.longitude}),()=>rej('location'));});}
+async function searchNearby(u,pref,type,kws){
+  const{Place,SearchNearbyRankPreference}=await google.maps.importLibrary('places');
+  const base={fields:['displayName','rating','priceLevel','location','id'],locationRestriction:{center:new google.maps.LatLng(u.lat,u.lng),radius:Math.max(pref.walk*80,400)},includedPrimaryTypes:[TYPE_INFO[type].gmType],maxResultCount:20,rankPreference:pref.sort==='distance'?SearchNearbyRankPreference.DISTANCE:SearchNearbyRankPreference.POPULARITY,language:'zh-TW'};
+  const{places:baseResults}=await Place.searchNearby(base);
+  if(kws&&kws.length){
+    try{
+      const{places:kwResults}=await Place.searchByText({textQuery:kws.join(' '),fields:['displayName','rating','priceLevel','location','id'],locationBias:{center:new google.maps.LatLng(u.lat,u.lng),radius:Math.max(pref.walk*80,400)},maxResultCount:20,language:'zh-TW'});
+      if(vegMode){
+        /* 素食模式：只回傳 kwResults，不混入一般餐廳 */
+        return kwResults;
+      }
+      /* 一般模式有自訂關鍵字：baseResults 保底多樣性，kwResults 補充關鍵字結果 */
+      const seen=new Set(baseResults.map(p=>p.id));
+      return [...baseResults,...kwResults.filter(p=>!seen.has(p.id))];
+    }catch(e){
+      if(vegMode) throw e;   /* 素食搜尋失敗 → 向上拋，由 fetchAndInitSlot 顯示錯誤 */
+      return baseResults;    /* 一般模式關鍵字失敗 → fallback 到附近搜尋結果 */
+    }
+  }
+  return baseResults;
+}
+function haversine(uLat,uLng,pLat,pLng){const R=6371000,dLat=(pLat-uLat)*Math.PI/180,dLng=(pLng-uLng)*Math.PI/180;const a=Math.sin(dLat/2)**2+Math.cos(uLat*Math.PI/180)*Math.cos(pLat*Math.PI/180)*Math.sin(dLng/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}
+function fmtPlace(p,u){const lat=typeof p.location.lat==='function'?p.location.lat():p.location.lat;const lng=typeof p.location.lng==='function'?p.location.lng():p.location.lng;const d=haversine(u.lat,u.lng,lat,lng),wt=Math.round(d/80);return{name:p.displayName,rating:p.rating||0,price:p.priceLevel||1,distance:Math.round(d),walkTime:wt,remaining:60-wt*2-10,placeId:p.id};}
+function showError(icon,title,desc){document.getElementById('error-icon').textContent=icon;document.getElementById('error-title').textContent=title;document.getElementById('error-desc').textContent=desc;document.getElementById('error-card').classList.add('show');document.getElementById('machine-wrap').style.display='none';}
+function hideError(){document.getElementById('error-card').classList.remove('show');document.getElementById('machine-wrap').style.display='';}
+function retrySearch(){hideError();fetchGen++;fetchPromise=null;slotPool=[];spinQueue=[];buildReelTrack();doSpin();}
+
+async function fetchAndInitSlot(background=false){
+  const myGen=++fetchGen;
+  hideError();
+  try{
+    const u=await getLocation();
+    if(myGen!==fetchGen)return;
+    const kws=buildSearchKws(curType);
+    let places;
+    try{places=await searchNearby(u,prefState[curType],curType,kws);}
+    catch(e){if(myGen!==fetchGen)return;showError('🌐','搜尋失敗','Google Maps 回傳錯誤，請確認網路連線後重試');return;}
+    if(myGen!==fetchGen)return;
+    const pref=prefState[curType],excl=getExcl(curType);
+    const pass=(r,sk)=>r.walkTime<=pref.walk&&r.remaining>0&&pref.prices.includes(r.price)&&(sk||!excl.includes(r.name));
+    let results=places.map(p=>fmtPlace(p,u)).filter(r=>pass(r,false));
+    if(!results.length&&excl.length){results=places.map(p=>fmtPlace(p,u)).filter(r=>pass(r,true));}
+    if(!results.length){showError(places.length?'😅':'🗺️',places.length?'範圍內沒有符合條件的店':'附近沒有找到任何餐廳',places.length?`步行 ${pref.walk} 分鐘內找不到符合價格的店，試著放寬條件`:'可能是定位偏移或該區店家較少');return;}
+    slotPool=results;
+    shuffleQueue();
+    if(!background){buildReelTrack();renderDots();updateSlotStatus();}
+    else{updateSlotStatus();}
+  }catch(err){
+    if(myGen!==fetchGen)return;
+    const isL=['location','browser'].includes(String(err));
+    showError(isL?'📍':'⚠️',isL?'無法取得位置':'發生錯誤',isL?'請允許瀏覽器存取位置權限，或確認裝置定位已開啟':String(err));
+  }
+}
+
+/* ══ 頁三：拉霸機 ══ */
+let vegMode=false;
+try{vegMode=localStorage.getItem('veg_mode')==='1';}catch(e){}
+function toggleVeg(){vegMode=!vegMode;try{localStorage.setItem('veg_mode',vegMode?'1':'0');}catch(e){}applyVegUI();fetchGen++;fetchPromise=null;slotPool=[];spinQueue=[];buildReelTrack();}
+function applyVegUI(){document.body.classList.toggle('veg-mode',vegMode);document.getElementById('veg-btn').classList.toggle('on',vegMode);}
+
+const VEG_KWS=['素食'];
+const TYPE_DEFAULT_KWS={meal:['餐廳'],cafe:['咖啡廳'],snack:['點心小吃']};
+function buildSearchKws(type){const userKws=(prefState[type]&&prefState[type].kws)||[];if(!vegMode||type==='cafe')return userKws.length?userKws:TYPE_DEFAULT_KWS[type]||['餐廳'];return userKws.length?[...VEG_KWS,...userKws]:VEG_KWS;}
+
+function shuffleQueue(){const a=slotPool.map((_,i)=>i);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}spinQueue=a;}
+
+function initSlotPage(){
+  document.getElementById('result-card').classList.remove('show');
+  document.getElementById('exhausted-card').classList.remove('show');
+  hideError();setStatus('');
+  fetchGen++;
+  fetchPromise=null;
+  slotPool=[];
+  spinQueue=[];
+  buildReelTrack();
+  renderDots();
+  updateSlotStatus();
+}
+
+function buildReelTrack(){
+  const trk=document.getElementById('reel-track');
+  trk.innerHTML='';
+  const win=document.querySelector('.reel-window');
+  const existing=win.querySelector('.reel-placeholder');
+  if(existing)existing.remove();
+  if(!slotPool.length){
+    const ph=document.createElement('div');
+    ph.className='reel-placeholder';
+    ph.style.cssText='position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;z-index:4;pointer-events:none';
+    ph.innerHTML=`<div style="font-size:15px;font-weight:500;color:#b4b2a9">拉下開始搜尋</div>`;
+    win.appendChild(ph);
+    return;
+  }
+  const ph=win.querySelector('.reel-placeholder');
+  if(ph)ph.remove();
+
+  /* ★ FIX: 複製足夠多份確保不超出範圍
+     最多 extraRounds=4 圈 + 目標 index，所以至少需要 (4+1)*n 個 item
+     直接複製 10 份，絕對夠用 */
+  const COPIES = 10;
+  for(let c=0;c<COPIES;c++){
+    slotPool.forEach(d=>{
+      const el=document.createElement('div');el.className='reel-item';
+      el.innerHTML=`<div class="reel-name">${d.name}</div><div class="reel-meta"><span>⭐ ${d.rating}</span><span>🚶 ${d.walkTime} 分</span></div>`;
+      trk.appendChild(el);
+    });
+  }
+}
+
+function renderDots(){
+  const row=document.getElementById('dots-row');row.innerHTML='';
+  const rem=getChances(curType);
+  for(let i=0;i<MAX_CH;i++){const d=document.createElement('div');d.className='dot '+(rem>=999||i<rem?'on':'off');row.appendChild(d);}
+}
+function updateSlotStatus(){
+  const rem=getChances(curType);
+  const unlimited=prefState[curType]&&prefState[curType].unlimited;
+  const exhausted=!unlimited&&rem<=0;
+  document.getElementById('slot-status').textContent=exhausted?'本小時機會已用完':slotPool.length?(unlimited?'無限次・盡情拉':`還有 ${rem} 次機會`):'拉下開始搜尋';
+  document.getElementById('exhausted-card').classList.toggle('show',exhausted);
+  document.getElementById('lever-ball').classList.toggle('disabled',exhausted);
+  if(exhausted)startCountdown();
+  else if(cdTimer){clearInterval(cdTimer);cdTimer=null;}
+}
+function startCountdown(){
+  if(cdTimer)return;
+  const el=document.getElementById('countdown');
+  function tick(){const now=new Date(),next=new Date(now);next.setHours(now.getHours()+1,0,0,0);const diff=Math.max(0,Math.floor((next-now)/1000));el.textContent=`${String(Math.floor(diff/60)).padStart(2,'0')}:${String(diff%60).padStart(2,'0')}`;if(diff===0){clearInterval(cdTimer);cdTimer=null;renderDots();updateSlotStatus();}}
+  tick();cdTimer=setInterval(tick,1000);
+}
+
+async function doSpin(){
+  const unlimited=prefState[curType]&&prefState[curType].unlimited;
+  if(spinning||(!unlimited&&getChances(curType)<=0))return;
+  if(!slotPool.length){
+    spinning=true;
+    document.getElementById('slot-status').textContent='搜尋中…';
+    document.getElementById('lever-ball').classList.add('disabled');
+    await (fetchPromise||fetchAndInitSlot());
+    fetchPromise=null;
+    spinning=false;
+    document.getElementById('lever-ball').classList.remove('disabled');
+    if(!slotPool.length){updateSlotStatus();return;}
+    buildReelTrack();renderDots();updateSlotStatus();
+    _spinOnce(unlimited);
+    return;
+  }
+  /* slotPool 已由背景 fetch 填好但 UI 尚未建立，補上 */
+  if(!document.getElementById('reel-track').children.length){buildReelTrack();renderDots();updateSlotStatus();}
+  _spinOnce(unlimited);
+}
+
+function _spinOnce(unlimited){
+  const rem=getChances(curType);
+  if(!unlimited&&rem<=0)return;
+  spinning=true;
+  document.getElementById('result-card').classList.remove('show');
+  document.getElementById('slot-status').textContent='轉動中…';
+  if(!unlimited)incUsed(curType);
+  renderDots();
+
+  /* ★ FIX: shuffle 隊列，全部看完才重新洗牌，保證不重複 */
+  if(!spinQueue.length) shuffleQueue();
+  pickedIdx=spinQueue.shift();
+
+  spinReel(pickedIdx,()=>{spinning=false;updateSlotStatus();showResult(pickedIdx);});
+}
+
+/* ★ 核心修正：改用 CSS transition 做緩動，避免 setInterval 浮點誤差導致永遠停不下來 */
+function spinReel(targetIdx, done){
+  if(spinIv){clearInterval(spinIv);spinIv=null;}
+  const trk=document.getElementById('reel-track');
+  const n=slotPool.length;
+
+  /* 從第 1 份的第 0 項開始（pos=0），轉到第 5 份的 targetIdx 項
+     這樣確保在 10 份複製內完全安全 */
+  const startCopy = 1;          /* 從哪份開始顯示（避免往回滾） */
+  const endCopy   = 5;          /* 停在哪份 */
+  const startPos  = startCopy * n * ITEM_H;
+  const endPos    = endCopy   * n * ITEM_H + targetIdx * ITEM_H;
+
+  /* 先瞬移到 startPos（無動畫） */
+  trk.style.transition='none';
+  trk.style.transform=`translateY(-${startPos}px)`;
+
+  /* 強制 reflow 後再套動畫 */
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      const dist=endPos-startPos;
+      /* 依距離估算時間：大約 16ms/px，上限 2.5s，下限 1s */
+      const duration=Math.min(2500,Math.max(1000,dist*0.9));
+      trk.style.transition=`transform ${duration}ms cubic-bezier(0.25, 0.1, 0.1, 1.0)`;
+      trk.style.transform=`translateY(-${endPos}px)`;
+
+      /* 動畫結束後呼叫 done */
+      const tid=setTimeout(()=>{ done(); }, duration+50);
+      /* 保存 tid 以備清除 */
+      spinIv=tid;
+    });
+  });
+}
+
+function showResult(idx){
+  const r=slotPool[idx];
+  document.getElementById('res-name').textContent=r.name;
+  document.getElementById('res-price').textContent=PRICE_SYM[r.price]||'';
+  document.getElementById('res-meta').innerHTML=`<div class="meta-pill">⭐ ${r.rating}</div><div class="meta-pill">🚶 步行 ${r.walkTime} 分鐘</div><div class="meta-pill">⏱ 剩餘 ${r.remaining} 分鐘</div>`;
+  document.getElementById('result-card').classList.add('show');
+}
+
+document.getElementById('respin-btn').addEventListener('click',()=>{if(slotPool.length)doSpin();});
+document.getElementById('confirm-btn').addEventListener('click',()=>{
+  const r=slotPool[pickedIdx];
+  addExcl(curType,r.name);
+  window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.name)}`,'_blank');
+  slotPool=slotPool.filter((_,i)=>i!==pickedIdx);
+  shuffleQueue();   /* pool 變動後重建隊列 */
+  buildReelTrack();
+  document.getElementById('result-card').classList.remove('show');
+  updateSlotStatus();
+});
+
+/* ── 拉桿 ── */
+const lb=document.getElementById('lever-ball');
+let drag=false,dy0=0,bt0=LV_MIN,bt=LV_MIN,pulled=false;
+function setBall(t){bt=Math.max(LV_MIN,Math.min(LV_MAX,t));lb.style.top=bt+'px';}
+function leverReady(){if(lb.classList.contains('disabled'))return false;const ul=prefState[curType]&&prefState[curType].unlimited;if(spinning)return false;if(!ul&&getChances(curType)<=0)return false;return true;}
+lb.addEventListener('mousedown',e=>{if(!leverReady())return;drag=true;pulled=false;dy0=e.clientY;bt0=bt;e.preventDefault();});
+lb.addEventListener('touchstart',e=>{if(!leverReady())return;drag=true;pulled=false;dy0=e.touches[0].clientY;bt0=bt;e.preventDefault();},{passive:false});
+document.addEventListener('mousemove',e=>{if(!drag)return;setBall(bt0+(e.clientY-dy0));if(bt>=LV_MAX-4)pulled=true;});
+document.addEventListener('touchmove',e=>{if(!drag)return;setBall(bt0+(e.touches[0].clientY-dy0));if(bt>=LV_MAX-4)pulled=true;e.preventDefault();},{passive:false});
+function relLever(){if(!drag)return;drag=false;const wp=pulled;lb.style.transition='top .38s cubic-bezier(.22,1,.36,1)';setBall(LV_MIN);setTimeout(()=>{lb.style.transition='';},400);if(wp)setTimeout(doSpin,220);}
+document.addEventListener('mouseup',relLever);
+document.addEventListener('touchend',relLever);
+
+loadPrefs();applyVegUI();
+</script>
+</body>
+</html>

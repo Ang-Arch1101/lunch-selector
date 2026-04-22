@@ -33,7 +33,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 .type-top-row{display:flex;align-items:flex-end;justify-content:space-between;padding:2rem 1.25rem 1.5rem}
 .type-top-row h1{font-size:24px;font-weight:500;color:#2c2c2a}
 .type-top-row p{font-size:13px;color:#888780;margin-top:4px}
-.carousel-wrap{overflow:hidden;width:100%;padding:6px 0 14px;touch-action:pan-y;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 12%,#000 88%,transparent 100%)}
+.carousel-wrap{overflow:hidden;width:100%;padding:6px 0 14px;touch-action:pan-y;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 4%,#000 96%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 4%,#000 96%,transparent 100%)}
 .carousel-track{display:flex;will-change:transform;align-items:flex-start}
 .type-card{flex-shrink:0;border:1px solid #e5e4de;border-radius:20px;background:#fff;padding:1.4rem 1.2rem 1.2rem;display:flex;flex-direction:column;user-select:none;transition:border-color .2s,box-shadow .2s}
 .type-card.center{border-color:#aaa9a0;box-shadow:0 2px 12px rgba(0,0,0,.07)}
@@ -272,7 +272,7 @@ const PRICE_SYM = ['','$','$$','$$$','$$$$'];
 const MAX_CH = 3;
 const ITEM_H = 130;
 const LV_MIN = 4, LV_MAX = 190-38-4;
-const PEEK = 28, GAP = 14;
+const PEEK = 8, GAP = 10;
 
 let curType='meal', slotPool=[], spinning=false, spinIv=null, pickedIdx=0, cdTimer=null, prefCurType='meal', spinQueue=[], fetchPromise=null, fetchGen=0;
 

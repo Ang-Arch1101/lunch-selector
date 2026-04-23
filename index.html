@@ -389,7 +389,7 @@ function goPage(id){
   document.addEventListener('mouseup',dragEnd);
   dots.forEach(d=>d.addEventListener('click',()=>snapTo(parseInt(d.dataset.i),true)));
   let rzTimer;
-  window.addEventListener('resize',()=>{clearTimeout(rzTimer);rzTimer=setTimeout(buildCards,100);});
+  window.addEventListener('resize',()=>{clearTimeout(rzTimer);rzTimer=setTimeout(()=>{if(document.activeElement&&document.activeElement.classList.contains('card-kw-inp'))return;buildCards();},100);});
   loadPrefs();buildCards();
 })();
 
